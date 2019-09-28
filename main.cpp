@@ -64,8 +64,7 @@ int columnToInteger(const std::string& col)
 
 void parseFormulas(const std::string& formula, vecOfIntIntPair* parsed)
 {
-    int i = 1;
-    while (i < static_cast<int>(formula.size()))
+    for (int i = 1; i < static_cast<int>(formula.size()); ++i)
     {
         std::string col, row;
         while (i < static_cast<int>(formula.size()) && formula[i] != '+')
@@ -77,8 +76,7 @@ void parseFormulas(const std::string& formula, vecOfIntIntPair* parsed)
 
             ++i;
         }
-        parsed->push_back( std::make_pair(stoi(row) - 1, columnToInteger(col) - 1) );
-        ++i;
+        parsed->push_back( std::make_pair(std::stoi(row) - 1, columnToInteger(col) - 1) );
     }
 }
 
