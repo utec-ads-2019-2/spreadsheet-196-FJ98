@@ -4,14 +4,14 @@ using namespace std;
 
 #define vecOfStrVec std::vector< std::vector<std::string> >
 #define vecOfIntVec std::vector< std::vector<int> >
-
+#define vecOfIntIntPair std::vector<std::pair<int,int>>
 
 vecOfStrVec enterMatrix(int rows, int columns);
 void printMatrix(int, int, vecOfIntVec&);
 
 int columnToInteger(const std::string&);
-void parseFormulas(const string&, std::vector<std::pair<int,int>>*);
-int evaluateFormulas(vecOfStrVec& sheet, std::vector< std::vector<int> >& mem, int rows, int columns);
+void parseFormulas(const std::string&, vecOfIntIntPair*);
+int evaluateFormulas(vecOfStrVec& sheet, vecOfIntVec& mem, int rows, int columns);
 vecOfIntVec solveSpreadSheet(vecOfStrVec sheet, int rows, int columns);
 
 int main() {
@@ -62,36 +62,36 @@ int columnToInteger(const std::string& col)
 }
 
 
-void parseFormulas(const string& formula, std::vector<std::pair<int,int>>* parsed)
+void parseFormulas(const std::string& formula, vecOfIntIntPair* parsed)
 {
     int i = 1;
     while (i < static_cast<int>(formula.size()))
     {
-        string col, row;
+        std::string col, row;
         while (i < static_cast<int>(formula.size()) && formula[i] != '+')
         {
-            if (isalpha(formula[i]))
+            if (std::isalpha(formula[i]))
                 col += formula[i];
             else
                 row += formula[i];
 
             ++i;
         }
-        parsed->push_back(std::make_pair(stoi(row) - 1, columnToInteger(col) - 1));
+        parsed->push_back( std::make_pair(stoi(row) - 1, columnToInteger(col) - 1) );
         ++i;
     }
 }
 
 
-int evaluateFormulas(vecOfStrVec& sheet, std::vector< std::vector<int> >& mem, int rows, int columns)
+int evaluateFormulas(vecOfStrVec& sheet, vecOfIntVec& mem, int rows, int columns)
 {
     if (mem[rows][columns] != -1)
         return mem[rows][columns];
 
     if (sheet[rows][columns][0] != '=')
-        return mem[rows][columns] = stoi(sheet[rows][columns]);
+        return mem[rows][columns] = std::stoi(sheet[rows][columns]);
 
-    std::vector<std::pair<int,int>> parsed;
+    vecOfIntIntPair parsed;
     parseFormulas(sheet[rows][columns], &parsed);
     int ret = 0;
     for (auto & k : parsed)
@@ -111,7 +111,7 @@ vecOfIntVec solveSpreadSheet(vecOfStrVec sheet, int rows, int columns)
         for (int j = 0; j < columns; ++j)
         {
             if (sheet[i][j][0] != '=') {
-                result[i][j] = stoi(sheet[i][j]);
+                result[i][j] = std::stoi(sheet[i][j]);
             } else {
                 result[i][j] = evaluateFormulas(sheet, result, i, j);
             }
@@ -133,4 +133,3 @@ void printMatrix(int rows,int columns, vecOfIntVec& matrix)
         std::cout << "\n";
     }
 }
-
