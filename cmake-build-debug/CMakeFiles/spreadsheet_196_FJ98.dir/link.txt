@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/spreadsheet_196_FJ98.dir/main.cpp.o  -o spreadsheet_196_FJ98 

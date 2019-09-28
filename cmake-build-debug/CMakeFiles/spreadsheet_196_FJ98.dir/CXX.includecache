@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/felix/2019-2/ADS-20192/UVA-PROBLEMS/spreadsheet-196-FJ98/main.cpp
+bits/stdc++.h
+-
+

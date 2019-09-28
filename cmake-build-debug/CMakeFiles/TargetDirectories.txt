@@ -1,0 +1,3 @@
+/home/felix/2019-2/ADS-20192/UVA-PROBLEMS/spreadsheet-196-FJ98/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/felix/2019-2/ADS-20192/UVA-PROBLEMS/spreadsheet-196-FJ98/cmake-build-debug/CMakeFiles/spreadsheet_196_FJ98.dir
+/home/felix/2019-2/ADS-20192/UVA-PROBLEMS/spreadsheet-196-FJ98/cmake-build-debug/CMakeFiles/edit_cache.dir
